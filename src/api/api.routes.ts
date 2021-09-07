@@ -30,7 +30,6 @@ router.post('/shorten', async (ctx:Koa.Context) => {
 });
 
 router.get('/:shortUrlCode', async (ctx:Koa.Context) => {
-  // ?? Websocket here to update top 100 pages??
   const x: UrlInfo | undefined = await getRepository(UrlInfo).findOne({short_url: ctx.params.shortUrlCode});
   if (x){
     getRepository(UrlInfo).increment({id:x.id}, "visits", 1);
