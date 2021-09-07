@@ -1,0 +1,37 @@
+{
+  "name": "shortner_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json --format stylish",
+    "build": "tsc",
+    "serve": "ts-node src/server.ts",
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa__cors": "^3.0.3",
+    "@types/node": "^16.7.10",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^10.1.1",
+    "nanoid": "^3.1.25",
+    "nodemon": "^2.0.12",
+    "pg": "^8.7.1",
+    "ts-node": "^10.2.1",
+    "typeorm": "^0.2.37",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "tslint": "^6.1.3"
+  }
+}
