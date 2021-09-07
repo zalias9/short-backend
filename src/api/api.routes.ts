@@ -6,6 +6,14 @@ import UrlInfo from '../entities/url.entity'
 
 const router: Router = new Router();
 
+/**
+ * Shortens a given long url.
+ *
+ * Url: POST /shorten
+ * Body: { url: "http://somelongurl.com" }
+ * Returns: { original_url, short_url }
+ */
+
 router.post('/shorten', async (ctx:Koa.Context) => {
   let short_url: string;
   // Check if it already exists.
@@ -24,10 +32,16 @@ router.post('/shorten', async (ctx:Koa.Context) => {
     ctx.body = {original_url: ctx.request.body.url, short_url };
   } else {
     // return UrlInfo 
-    // TODO: Return partial
-    ctx.body = x;
+    ctx.body = {original_url: x.original_url, short_url: x.short_url};
   }
 });
+
+/**
+ * Finds a short url code and sends back the original url.
+ *
+ * Url: GET /:shortUrlCode
+ * Returns: original_url
+ */
 
 router.get('/:shortUrlCode', async (ctx:Koa.Context) => {
   const x: UrlInfo | undefined = await getRepository(UrlInfo).findOne({short_url: ctx.params.shortUrlCode});
@@ -45,6 +59,13 @@ interface TopResults {
   short_url:string,
   visits: number
 }
+
+/**
+ * Returns top "num" number of results based on descending order of visits.
+ *
+ * Url: /top/:num
+ * Returns: TopResults[]
+ */
 
 router.get('/top/:num', async (ctx:Koa.Context) => {
   // Get top n visits in descending order.
